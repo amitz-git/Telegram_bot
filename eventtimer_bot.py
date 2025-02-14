@@ -3,7 +3,7 @@ from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
 import asyncio
 
 # Replace with your own bot token from BotFather
-TOKEN = '7732801366:AAFnCFVPXwKQ86UjGl8zNzI5-tklCJ_4amw'
+TOKEN = '7732801366:AAHJDr4liOx_lZWD7iPrzT45qfTWvNjDta8'
 
 # Dictionary to keep track of active timers
 active_timers = {}
