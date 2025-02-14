@@ -8,3 +8,7 @@ pip install python-telegram-bot
 ```sh
 python <file_name>.py
 ```
+### Get info
+```sh
+https://api.telegram.org/bot<YOUR_TELEGRAM_TOKEN>/getWebhookInfo
+```
