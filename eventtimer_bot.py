@@ -15,13 +15,14 @@ def format_time(seconds: int) -> str:
     seconds = seconds % 60
     
     # Format with leading zeros
+    days = f"{days:02}"
     hours = f"{hours:02}"
     minutes = f"{minutes:02}"
     seconds = f"{seconds:02}"
     
     # Build the time string
     if days > 0:
-        return f"{days} day, {hours}:{minutes}:{seconds}"
+        return f"{days}day, {hours}:{minutes}:{seconds}"
     else:
         return f"{hours}:{minutes}:{seconds}"
 
