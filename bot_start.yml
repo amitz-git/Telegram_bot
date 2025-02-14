@@ -1,0 +1,49 @@
+---
+- name: Install prerequisites and run Telegram bot in virtual environment
+  hosts: master
+  become: true
+  tasks:
+    - name: Update APT package index
+      apt:
+        update_cache: yes
+
+    - name: Install Python 3, pip, and venv
+      apt:
+        name:
+          - python3
+          - python3-pip
+          - python3-venv
+          - git
+        state: present
+
+    - name: Create a directory for the bot
+      file:
+        path: /opt/telegram_bot
+        state: directory
+        owner: "{{ ansible_user }}"
+        group: "{{ ansible_user }}"
+        mode: '0755'
+
+    - name: Clone the Telegram bot repository
+      git:
+        repo: https://github.com/amitz-git/Telegram_bot.git
+        dest: /opt/telegram_bot
+        version: main
+
+    - name: Create a Python virtual environment
+      command: python3 -m venv /opt/telegram_bot/venv
+
+    - name: Install required libraries in virtual environment
+      command: /opt/telegram_bot/venv/bin/pip install python-telegram-bot
+      args:
+        chdir: /opt/telegram_bot
+
+    - name: Run the Telegram bot using virtual environment
+      command: /opt/telegram_bot/venv/bin/python /opt/telegram_bot/eventtimer_bot.py
+      async: 600
+      poll: 0
+      register: bot_run
+
+    - name: Bot runing status
+      debug:
+        msg: "Bot Started"
