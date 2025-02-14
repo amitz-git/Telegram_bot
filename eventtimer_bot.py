@@ -35,8 +35,8 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 async def countdown(user_id, message, total_seconds, context):
     try:
         while total_seconds > 0:
-            await asyncio.sleep(5)  # Update every 1 seconds
-            total_seconds -= 5
+            await asyncio.sleep(1)  # Update every 1 seconds
+            total_seconds -= 1
             if total_seconds < 0:
                 total_seconds = 0
             
